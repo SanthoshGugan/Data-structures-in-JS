@@ -28,7 +28,7 @@ class ArrayCustom {
     if (this.array.hasOwnProperty(index)) {
       let tempEle = this.array[index];
       this.array[index] = element;
-      pushAtIndex(tempEle, index + 1);
+      insertAt(tempEle, index + 1);
     } else {
       this.array[index] = element;
       this.lastIndex = this.lastIndex < index ? index : this.lastIndex;
