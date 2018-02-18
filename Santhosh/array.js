@@ -1,22 +1,22 @@
-export class ArrayCustom {
+class ArrayCustom {
   constructor() {
     this.array = {};
     this.lastIndex = -1;
   }
 
-  push = function(element) {
+  push(element) {
     this.lastIndex++;
     this.array[this.lastIndex] = element;
   };
 
-  pop = function(element) {
+  pop(element) {
     let popEle = this.array[this.lastIndex];
     delete this.array[this.lastIndex];
     this.lastIndex--;
     return popEle;
   };
 
-  traverse = function() {
+  traverse() {
     let outputStr = "";
     for (let index in this.array) {
       outputStr += this.array[index] + " ";
@@ -24,28 +24,30 @@ export class ArrayCustom {
     return outputStr;
   };
 
-  insertAt = function(element, index) {
+  insertAt(element, index) {
     if (this.array.hasOwnProperty(index)) {
       let tempEle = this.array[index];
       this.array[index] = element;
       pushAtIndex(tempEle, index + 1);
     } else {
       this.array[index] = element;
+      this.lastIndex = this.lastIndex < index ? index : this.lastIndex;
     }
   };
 
-  delete = function(index) {
+  delete(index) {
     if (this.array.hasOwnProperty(index)) {
       let tempEle = this.array[index];
       delete this.array[index];
+      this.lastIndex = this.lastIndex == index ? this.lastIndex - 1 : this.lastIndex;
     }
   };
 
-  update = function(element, index) {
+  update(element, index) {
     this.array[index] = element;
   };
 
-  get = function(index) {
+  get(index) {
     if (this.array.hasOwnProperty(index)) {
       return this.array[index];
     } else {
@@ -53,7 +55,7 @@ export class ArrayCustom {
     }
   };
 
-  search = function(element){
+  search(element){
       for(let index in this.array){
           if(this.array[index] == element){
             return index;
